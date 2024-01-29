@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Koloskov41size"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="800" FontFamily="Tw Cen MT" Icon="res/icon.ico">
+        Title="MainWindow" MinHeight="600" MinWidth="900" FontFamily="Comic Sans MS" Icon="res/icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>

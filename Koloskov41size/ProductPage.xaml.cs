@@ -23,6 +23,10 @@ namespace Koloskov41size
         public ProductPage()
         {
             InitializeComponent();
+
+            var currentProduct = Koloskov41Entities.GetContext().Product.ToList();
+
+            ProductListView.ItemsSource = currentProduct;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
