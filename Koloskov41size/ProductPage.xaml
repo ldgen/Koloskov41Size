@@ -9,7 +9,41 @@
       Title="ProductPage" FontFamily="Comic Sans MS">
 
     <Grid>
-        <ListView Name="ProductListView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                         Width="200" FontSize="15"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <ComboBox Name="ComboFilt" SelectionChanged="ComboFilt_SelectionChanged"
+                          FontSize="15" Width="200">
+                    <TextBlock>Все диапазоны</TextBlock>
+                    <TextBlock>0-9,99%</TextBlock>
+                    <TextBlock>10-14,99%</TextBlock>
+                    <TextBlock>15% и более</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <ComboBox Name="ComboSort" SelectionChanged="ComboSort_SelectionChanged"
+                          FontSize="15" Width="230">
+                    <TextBlock>Сортировка</TextBlock>
+                    <TextBlock>По возрастанию стоимости</TextBlock>
+                    <TextBlock>По убыванию стоимости</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Количество: " FontSize="18"></TextBlock>
+                <TextBlock Name="ProductRightNow" FontSize="18"></TextBlock>
+                <TextBlock Text=" из " FontSize="18"></TextBlock>
+                <TextBlock Name="ProductALL" FontSize="18"></TextBlock>
+            </StackPanel>
+        </WrapPanel>
+        <ListView Name="ProductListView" Grid.Row="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

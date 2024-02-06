@@ -13,9 +13,7 @@
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="OrderDeliveryDate" Type="date" Nullable="false" />
           <Property Name="OrderPickupPoint" Type="int" Nullable="false" />
-          <Property Name="OrderSurname" Type="nvarchar" MaxLength="50" />
-          <Property Name="OrderName" Type="nvarchar" MaxLength="50" />
-          <Property Name="OrderPatronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderClientID" Type="int" />
           <Property Name="OrderReceiveCode" Type="int" Nullable="false" />
           <Property Name="OrderStatus" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
@@ -98,6 +96,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderProduct_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
@@ -137,6 +147,10 @@
             <End Role="PickUpPoints" EntitySet="PickUpPoints" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
@@ -159,12 +173,11 @@
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OrderDeliveryDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="OrderPickupPoint" Type="Int32" Nullable="false" />
-          <Property Name="OrderSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OrderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OrderPatronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderClientID" Type="Int32" />
           <Property Name="OrderReceiveCode" Type="Int32" Nullable="false" />
           <Property Name="OrderStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="PickUpPoints" Relationship="Self.FK_Order_PickUpPoints" FromRole="Order" ToRole="PickUpPoints" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
         </EntityType>
         <EntityType Name="OrderProduct">
@@ -226,6 +239,7 @@
           <Property Name="UserLogin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="Self.FK__User__UserRole__398D8EEE" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Order_PickUpPoints">
@@ -237,6 +251,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="OrderPickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderClientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -287,6 +313,10 @@
             <End Role="PickUpPoints" EntitySet="PickUpPoints" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
@@ -313,9 +343,7 @@
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderDeliveryDate" ColumnName="OrderDeliveryDate" />
                 <ScalarProperty Name="OrderPickupPoint" ColumnName="OrderPickupPoint" />
-                <ScalarProperty Name="OrderSurname" ColumnName="OrderSurname" />
-                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
-                <ScalarProperty Name="OrderPatronymic" ColumnName="OrderPatronymic" />
+                <ScalarProperty Name="OrderClientID" ColumnName="OrderClientID" />
                 <ScalarProperty Name="OrderReceiveCode" ColumnName="OrderReceiveCode" />
                 <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
               </MappingFragment>

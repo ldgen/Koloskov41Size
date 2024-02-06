@@ -27,11 +27,74 @@ namespace Koloskov41size
             var currentProduct = Koloskov41Entities.GetContext().Product.ToList();
 
             ProductListView.ItemsSource = currentProduct;
+
+            ProductALL.Text = Convert.ToString(currentProduct.Count);
+
+            ComboSort.SelectedIndex = 0;
+            ComboFilt.SelectedIndex = 0;
+
+            UpdateProduct();
+        }
+
+        private void UpdateProduct()
+        {
+            var currentProduct = Koloskov41Entities.GetContext().Product.ToList();
+
+            if(ComboFilt.SelectedIndex == 0)
+            {
+                
+            }
+            if (ComboFilt.SelectedIndex == 1)
+            {
+                currentProduct = currentProduct.Where(p => (p.ProductCurrentDiscount >= 0 && p.ProductCurrentDiscount < 10)).ToList();
+            }
+            if (ComboFilt.SelectedIndex == 2)
+            {
+                currentProduct = currentProduct.Where(p => (p.ProductCurrentDiscount >= 10 && p.ProductCurrentDiscount < 15)).ToList();
+            }
+            if (ComboFilt.SelectedIndex == 3)
+            {
+                currentProduct = currentProduct.Where(p => (p.ProductCurrentDiscount >= 15)).ToList();
+            }
+
+            currentProduct = currentProduct.Where(p => p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+
+            if(ComboSort.SelectedIndex == 0)
+            {
+
+            }
+            if (ComboSort.SelectedIndex == 1)
+            {
+                currentProduct = currentProduct.OrderBy(p => p.ProductCost).ToList();
+            }
+            if (ComboSort.SelectedIndex == 2)
+            {
+                currentProduct = currentProduct.OrderByDescending(p => p.ProductCost).ToList();
+            }
+
+            ProductRightNow.Text = Convert.ToString(currentProduct.Count);
+
+            ProductListView.ItemsSource = currentProduct;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new AddEditPage());
+        }
+
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateProduct();
+        }
+
+        private void ComboFilt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateProduct();
+        }
+
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateProduct();
         }
     }
 }
