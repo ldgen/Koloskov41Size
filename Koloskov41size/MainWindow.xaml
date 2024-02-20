@@ -16,7 +16,7 @@
         <Border Grid.Row="2" Background="#FFCC99"></Border>
         <Image Source="res/logo.png" HorizontalAlignment="Left"></Image>
         <TextBlock Text="41 размер" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
-        <Button Name="BtnBack" Content="Back" HorizontalAlignment="Right" Click="BtnBack_Click"></Button>
+        <Button Name="BtnBack" Content="Назад" HorizontalAlignment="Right" Click="BtnBack_Click"></Button>
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

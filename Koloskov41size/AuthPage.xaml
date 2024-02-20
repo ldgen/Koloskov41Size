@@ -1,0 +1,28 @@
+﻿<Page x:Class="Koloskov41size.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Koloskov41size"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthPage" FontFamily="Comic Sans MS" FontSize="20">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Логин" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Height="30" Width="200" HorizontalAlignment="Center" Name="LoginTB"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Height="30" Width="200" HorizontalAlignment="Center" Name="PassTB"></TextBox>
+        <Button Content="Войти" Grid.Row="2" Grid.Column="1" Name="LoginBtn" Click="LoginBtn_Click"></Button>
+        <Button Content="Войти как гость" Grid.Row="2" Grid.Column="0" Name="LoginGuestBtn" Click="LoginGuestBtn_Click"></Button>
+    </Grid>
+</Page>

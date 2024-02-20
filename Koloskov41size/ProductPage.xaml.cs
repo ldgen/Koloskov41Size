@@ -20,10 +20,27 @@ namespace Koloskov41size
     /// </summary>
     public partial class ProductPage : Page
     {
-        public ProductPage()
+        public ProductPage(User user)
         {
             InitializeComponent();
-
+            if (user != null)
+            {
+                FIOTB.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
+                switch (user.UserRole)
+                {
+                    case 1:
+                        RoleTB.Text = "Клиент";break;
+                    case 2:
+                        RoleTB.Text = "Менеджер";break;
+                    case 3:
+                        RoleTB.Text = "Администратор";break;
+                }
+            }
+            else
+            {
+                FIOTB.Text = "Гость ";
+                RoleTB.Text = "Гость";
+            }
             var currentProduct = Koloskov41Entities.GetContext().Product.ToList();
 
             ProductListView.ItemsSource = currentProduct;

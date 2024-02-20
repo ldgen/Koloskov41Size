@@ -12,9 +12,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
                          Width="200" FontSize="15"></TextBox>
@@ -43,7 +45,15 @@
                 <TextBlock Name="ProductALL" FontSize="18"></TextBlock>
             </StackPanel>
         </WrapPanel>
-        <ListView Name="ProductListView" Grid.Row="2">
+        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
+            <TextBlock Text="Вы авторизованы как " FontSize="18"></TextBlock>
+            <TextBlock Name="FIOTB" FontSize="18"></TextBlock>
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="3">
+            <TextBlock Text="Роль: " FontSize="18"></TextBlock>
+            <TextBlock Name="RoleTB" FontSize="18"></TextBlock>
+        </StackPanel>
+        <ListView Name="ProductListView" Grid.Row="4">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
